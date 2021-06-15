@@ -50,7 +50,8 @@ public abstract class User {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String passwordRepeat;
 	
-	@JsonIgnore
-	@Column(name="verify")
-	private boolean verify = false;
+//	@JsonIgnore
+//	@Column(name="verify")
+//	private boolean verify = false;
+	
 }
