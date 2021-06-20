@@ -39,15 +39,15 @@ public class EmployerUserManager implements EmployerUserService {
 
 	@Override
 	public DataResult<List<EmployerUser>> findbyEmail(String email) {
-		return null;
-				//new SuccessDataResult<List<EmployerUser>>((List<EmployerUser>) this.employerUserDao.findByEmail(email));
+		return new SuccessDataResult<List<EmployerUser>>((List<EmployerUser>) this.employerUserDao.findByEmail(email));
+				
 	}
 
 	@Override
 	public Result add(EmployerUser employerUser) {
-		var checkEmail = this.findbyEmail(employerUser.getEmail()).data().size() !=0;
+		var checkEmail = this.findbyEmail(employerUser.getEmail()).getData().size() !=0;
 		var checkFields = !EmployerUserCheckHelper.AllFieldsAreRequired(employerUser);
-		var employeeConfirm = EmployeeUserCheckHelper.confirmEmployer(employerUser);
+		var employeeConfirm = !EmployerUserCheckHelper.confirmEmployer(employerUser);
 		
 		if(checkEmail || checkFields || employeeConfirm) {
 			String message = "";

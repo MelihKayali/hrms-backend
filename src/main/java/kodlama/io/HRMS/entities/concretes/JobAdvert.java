@@ -54,7 +54,7 @@ public class JobAdvert {
 	private Date createdDate;
 	
 	@Column(name="is_active")
-	private boolean isActive;
+	private boolean isActive = false;
 	
 	@ManyToOne
 	@JoinColumn(name="employer_id")

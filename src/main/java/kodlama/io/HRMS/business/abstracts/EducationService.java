@@ -8,6 +8,6 @@ import kodlama.io.HRMS.entities.concretes.Education;
 import kodlama.io.HRMS.entities.dtos.EducationDto;
 
 public interface EducationService {
-	Result add(Education education);
+	Result add(EducationDto educationDto);
 	DataResult<List<Education>> getAll();
 }

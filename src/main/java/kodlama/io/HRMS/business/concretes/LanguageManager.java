@@ -29,8 +29,8 @@ public class LanguageManager implements LanguageService {
 	}
 
 	@Override
-	public Result add(Language language) {
-		this.languageDao.save(language);
+	public Result add(LanguageDto languageDto) {
+		this.languageDao.save((Language) dtoConverterService.dtoClassConverter(languageDto, Language.class));
 		return new SuccessResult("Kayıt Başarılı");
 	}
 

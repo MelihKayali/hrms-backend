@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name="edu_graduates")
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Graduate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

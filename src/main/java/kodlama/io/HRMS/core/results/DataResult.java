@@ -13,10 +13,11 @@ public class DataResult<T> extends Result {
 		this.data = data;
 	}
 	
-	public T data() {
+	public T getData() {
 		return this.data;
 	}
 	
 	
 
 }
+

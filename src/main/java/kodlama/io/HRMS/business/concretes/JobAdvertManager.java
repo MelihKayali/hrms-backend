@@ -10,46 +10,43 @@ import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.ErrorResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.core.results.SuccessDataResult;
+import kodlama.io.HRMS.core.results.SuccessResult;
 import kodlama.io.HRMS.core.results.adapters.CheckNullFieldService;
+import kodlama.io.HRMS.core.utilities.DtoConverterService;
 import kodlama.io.HRMS.dataAccess.abstracts.JobAdvertDao;
 import kodlama.io.HRMS.entities.concretes.JobAdvert;
+import kodlama.io.HRMS.entities.dtos.JobAdvertDto;
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
 	
 	private JobAdvertDao jobAdvertDao;
 	private CheckNullFieldService checkNullFieldService;
+	private DtoConverterService dtoConverterService;
 	
-
-	public JobAdvertManager(JobAdvertDao jobAdvertDao, CheckNullFieldService checkNullFieldService) {
+	
+	public JobAdvertManager(JobAdvertDao jobAdvertDao, CheckNullFieldService checkNullFieldService , DtoConverterService dtoConverterService) {
 		super();
 		this.jobAdvertDao = jobAdvertDao;
 		this.checkNullFieldService = checkNullFieldService;
+		this.dtoConverterService = dtoConverterService;
 	}
 
 	@Override
-	public Result add(JobAdvert jobAdvert) {
-		if(!checkNullFieldService(jobAdvert)) {
-			return new ErrorResult("Tüm alanları doldurduğunuzdan emin olun");
-		}
-		this.jobAdvertDao.save(jobAdvert);
-		return new SuccessDataResult<JobAdvert>("İş başvurusu eklendi");
-	}
-
-	private boolean checkNullFieldService(JobAdvert jobAdvert) {
-		// TODO Auto-generated method stub
-		return false;
+	public Result add(JobAdvertDto jobAdvertDto) {
+		this.jobAdvertDao.save((JobAdvert) dtoConverterService.dtoClassConverter(jobAdvertDto, JobAdvert.class));
+		return new SuccessResult("Kayıt Başarılı");
 	}
 
 	@Override
-	public Result delete(JobAdvert jobAdvert) {
-		this.jobAdvertDao.delete(jobAdvert);
+	public Result delete(JobAdvertDto jobAdvertDto) {
+		this.jobAdvertDao.delete((JobAdvert) dtoConverterService.dtoClassConverter(jobAdvertDto, JobAdvert.class));
 		return new SuccessDataResult<JobAdvert>("İş başvurusu silindi");
 	}
 
 	@Override
-	public Result update(JobAdvert jobAdvert) {
-		this.jobAdvertDao.save(jobAdvert);
+	public Result update(JobAdvertDto jobAdvertDto) {
+		this.jobAdvertDao.save((JobAdvert) dtoConverterService.dtoClassConverter(jobAdvertDto, JobAdvert.class));
 		return new SuccessDataResult<JobAdvert>("İş başvurusu güncellendi");
 	}
 

@@ -15,6 +15,7 @@ import kodlama.io.HRMS.business.abstracts.TechnologyService;
 import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Technology;
+import kodlama.io.HRMS.entities.dtos.TechnologyDto;
 
 @RestController
 @RequestMapping("/api/technology")
@@ -33,7 +34,7 @@ public class TechnologiesController {
 	    }
 	    
 	    @PostMapping("/add")
-	    public Result add(@Valid @RequestBody Technology technology) {
-	    	return this.technologyService.add(technology);
+	    public Result add(@Valid @RequestBody TechnologyDto technologyDto) {
+	    	return this.technologyService.add(technologyDto);
 	    }
 }

@@ -38,11 +38,12 @@ public class JobPositionManager implements JobPositionService {
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		if(this.findByPositionIs(jobPosition.getPosition()) != null) {
+		if(this.jobPositionDao.existsByPosition(jobPosition.getPosition()) ==true) {
 			return new ErrorResult("Bu iş pozisyonu halihazırda alındı");
 		}
 		this.jobPositionDao.save(jobPosition);
 		return new SuccessResult("Kayıt başarılı");
 	}
+	//this.existByPosition(jobPosition.getPosition()) != null
 
 }

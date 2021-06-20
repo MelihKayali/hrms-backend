@@ -29,8 +29,8 @@ public class JobExperienceManager implements JobExperienceService{
 	}
 
 	@Override
-	public Result add(JobExperience jobExperience) {
-		this.jobExperienceDao.save(jobExperience);
+	public Result add(JobExperienceDto jobExperienceDto) {
+		this.jobExperienceDao.save((JobExperience) dtoConverterService.dtoClassConverter(jobExperienceDto,JobExperience.class ));
 		return new SuccessResult("Kayıt başarılı");
 	}
 

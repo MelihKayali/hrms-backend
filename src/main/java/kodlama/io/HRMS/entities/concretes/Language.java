@@ -36,7 +36,7 @@ public class Language {
 	@Column(name="language")
 	private String language;
 	
-	@NotBlank(message="Bos Geçilemez")
+	//@NotBlank(message="Bos Geçilemez")
 	@Column(name="lang_level")
 	private char langLevel;
 	

@@ -1,4 +1,4 @@
-package kodlama.io.HRMS.entities.dtos;
+	package kodlama.io.HRMS.entities.dtos;
 
 import java.util.Date;
 

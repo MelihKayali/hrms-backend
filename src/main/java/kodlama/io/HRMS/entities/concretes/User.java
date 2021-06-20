@@ -44,11 +44,11 @@ public abstract class User {
 	@Column(name="password")
 	private String password; 
 	
-	
-	@NotBlank(message="Şifre alanı boş olamaz")
-	@Transient
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private String passwordRepeat;
+//	
+//	@NotBlank(message="Şifre alanı boş olamaz")
+//	@Transient
+//	@JsonProperty(access = Access.WRITE_ONLY)
+//	private String passwordRepeat;
 	
 //	@JsonIgnore
 //	@Column(name="verify")

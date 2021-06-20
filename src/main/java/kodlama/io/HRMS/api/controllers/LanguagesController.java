@@ -34,7 +34,7 @@ public class LanguagesController {
 	    }
 	    
 	    @PostMapping("/add")
-	    public Result add(@Valid @RequestBody Language language) {
-	    	return this.languageService.add(language);
+	    public Result add(@Valid @RequestBody LanguageDto languageDto) {
+	    	return this.languageService.add(languageDto);
 	    }
 }

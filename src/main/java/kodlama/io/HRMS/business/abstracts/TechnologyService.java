@@ -8,6 +8,6 @@ import kodlama.io.HRMS.entities.concretes.Technology;
 import kodlama.io.HRMS.entities.dtos.TechnologyDto;
 
 public interface TechnologyService {
-	Result add(Technology technology);
+	Result add(TechnologyDto technologyDto);
 	DataResult<List<Technology>> getAll();
 }

@@ -37,18 +37,18 @@ public class JobExperience {
 	@Column(name="company_name")
 	private String companyName;
 	
-	@ManyToOne(targetEntity =JobPosition.class, fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name="position_id",referencedColumnName = "id",nullable = false)
+	@ManyToOne(targetEntity =JobPosition.class)
+	@JoinColumn(name="position_id",referencedColumnName = "id")
 	private JobPosition jobPosition;
 	
 	@Column(name="started_date")
 	private Date startedDate;
 	
-	@NotBlank(message="Bos Geçilemez")
+	//@NotBlank(message="Bos Geçilemez")
 	@Column(name="ended_date")
 	private Date endedDate;
 	
-	@NotBlank(message="Bos Geçilemez")
+	//@NotBlank(message="Bos Geçilemez")
 	@Column(name="created_date")
 	private Date createdDate;
 }

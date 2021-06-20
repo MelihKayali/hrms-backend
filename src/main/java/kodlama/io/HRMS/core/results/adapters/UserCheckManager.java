@@ -7,7 +7,7 @@ public class UserCheckManager implements UserCheckService {
 
 	@Override
 	public Boolean checkRealPerson(String identityNumber, String firstName, String lastName) {
-		return true;
+		return false;
 	}
 
 }

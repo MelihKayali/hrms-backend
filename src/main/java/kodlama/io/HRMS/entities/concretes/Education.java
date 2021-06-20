@@ -44,7 +44,7 @@ public class Education {
 	private String schoolName;
 	
 	
-	@ManyToOne(targetEntity = Graduate.class, optional = false)
+	@ManyToOne(targetEntity = Graduate.class)
 	@JoinColumn(name="graduate_id",referencedColumnName = "id",nullable = false)
 	private Graduate graduate;
 	

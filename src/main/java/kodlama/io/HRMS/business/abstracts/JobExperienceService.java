@@ -8,7 +8,7 @@ import kodlama.io.HRMS.entities.concretes.JobExperience;
 import kodlama.io.HRMS.entities.dtos.JobExperienceDto;
 
 public interface JobExperienceService {
-	Result add(JobExperience jobExperience);
+	Result add(JobExperienceDto jobExperienceDto);
 	DataResult<List<JobExperience>> getAll();
 	DataResult<List<JobExperienceDto>> findAllByResumeIdOrderByEndedDateDesc(int id);
 }

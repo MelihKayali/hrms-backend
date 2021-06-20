@@ -15,6 +15,7 @@ import kodlama.io.HRMS.business.abstracts.ResumeService;
 import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Resume;
+import kodlama.io.HRMS.entities.dtos.ResumeAddDto;
 
 @RestController
 @RequestMapping("/api/resumes")
@@ -33,7 +34,7 @@ public class ResumesController {
 	}
 	
 	@PostMapping("add")
-	public Result add(@Valid @RequestBody Resume resume) {
-		return this.resumeService.add(resume);	
+	public Result add(@Valid @RequestBody ResumeAddDto resumeAddDto) {
+		return this.resumeService.add(resumeAddDto);	
 	}
 }

@@ -16,6 +16,7 @@ import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Education;
 import kodlama.io.HRMS.entities.concretes.JobExperience;
+import kodlama.io.HRMS.entities.dtos.JobExperienceDto;
 
 @RestController
 @RequestMapping("/api/jobexperiences")
@@ -35,8 +36,8 @@ public class JobExperiencesController {
     }
     
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody JobExperience jobExperience) {
-    	return this.jobExperienceService.add(jobExperience);
+    public Result add(@Valid @RequestBody JobExperienceDto jobExperienceDto) {
+    	return this.jobExperienceService.add(jobExperienceDto);
     }
 
 }

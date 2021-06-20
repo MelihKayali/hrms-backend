@@ -15,6 +15,7 @@ import kodlama.io.HRMS.business.abstracts.EducationService;
 import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Education;
+import kodlama.io.HRMS.entities.dtos.EducationDto;
 
 @RestController
 @RequestMapping("/api/education")
@@ -34,7 +35,7 @@ public class EducationsController {
     }
     
     @PostMapping("/add")
-    public Result add(@Valid @RequestBody Education education) {
-    	return this.educationService.add(education);
+    public Result add(@Valid @RequestBody EducationDto educationDto) {
+    	return this.educationService.add(educationDto);
     }
 }

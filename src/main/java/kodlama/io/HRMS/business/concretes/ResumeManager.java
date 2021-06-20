@@ -16,6 +16,7 @@ import kodlama.io.HRMS.core.utilities.CloudinaryService;
 import kodlama.io.HRMS.core.utilities.DtoConverterService;
 import kodlama.io.HRMS.dataAccess.abstracts.ResumeDao;
 import kodlama.io.HRMS.entities.concretes.Resume;
+import kodlama.io.HRMS.entities.dtos.ResumeAddDto;
 import kodlama.io.HRMS.entities.dtos.ResumeGetDto;
 
 @Service
@@ -35,11 +36,11 @@ public class ResumeManager implements ResumeService {
 	}
 
 	@Override
-	public Result add(Resume resume) {
+	public Result add(ResumeAddDto resumeAddDto) {
 //		Resume resea = resumeDao.save(resume);
 //		ResumeHelper helper = new ResumeHelper();
 //		helper.setAllResumeId(resea.getEducations(), resea.getTechnologies(), resea.getLanguages(), resea.getJobExperiences());
-		this.resumeDao.save(resume);
+		this.resumeDao.save((Resume) dtoConverterService.dtoClassConverter(resumeAddDto, Resume.class));
 		return new SuccessResult("Kayıt Başarılı");
 	}
 
@@ -61,7 +62,7 @@ public class ResumeManager implements ResumeService {
 	public Result addPicture(MultipartFile file, int resumeId) {
 		@SuppressWarnings("unchecked")
 		Map<String, String> uploader = (Map<String, String>) 
-				cloudinaryService.save(file).data(); 
+				cloudinaryService.save(file).getData(); 
 		String imageUrl= uploader.get("url");
 		Resume Cv = resumeDao.getOne(resumeId);
 		Cv.setPhoto(imageUrl);

@@ -21,5 +21,5 @@ public class JobExperienceDto {
 	@Past(message="Başlangıç tarihi bugünden sonra olamaz")
 	private Date startedDate;
 	private Date endedDate;
-	private int jobTitleId;
+	private int jobPositionId;
 }

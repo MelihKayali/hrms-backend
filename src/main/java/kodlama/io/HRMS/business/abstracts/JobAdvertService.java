@@ -5,11 +5,12 @@ import java.util.List;
 import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.JobAdvert;
+import kodlama.io.HRMS.entities.dtos.JobAdvertDto;
 
 public interface JobAdvertService {
-	Result add(JobAdvert jobAdvert);
-	Result delete(JobAdvert jobAdvert);
-	Result update(JobAdvert jobAdvert);
+	Result add(JobAdvertDto jobAdvertDto);
+	Result delete(JobAdvertDto jobAdvertDto);
+	Result update(JobAdvertDto jobAdvertDto);
 	DataResult<List<JobAdvert>> getAll();
 	DataResult<JobAdvert> getById();
 	DataResult<List<JobAdvert>> getAllOpenJobAdvertList();
