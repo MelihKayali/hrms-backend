@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlama.io.HRMS.business.abstracts.JobAdvertService;
@@ -40,9 +41,9 @@ public class JobAdvertController {
 		return this.jobAdvertService.getAll();
 	}
 	
-	@GetMapping("/getbyıd")
-	DataResult<JobAdvert> getById(){
-		return this.jobAdvertService.getById();
+	@GetMapping("/getbyId")
+	DataResult<JobAdvert> getById(@RequestParam int id){
+		return this.jobAdvertService.getById(id);
 	}
 	
 	

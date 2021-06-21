@@ -24,7 +24,7 @@ public class JobAdvertManager implements JobAdvertService {
 	private CheckNullFieldService checkNullFieldService;
 	private DtoConverterService dtoConverterService;
 	
-	
+	@Autowired
 	public JobAdvertManager(JobAdvertDao jobAdvertDao, CheckNullFieldService checkNullFieldService , DtoConverterService dtoConverterService) {
 		super();
 		this.jobAdvertDao = jobAdvertDao;
@@ -73,8 +73,8 @@ public class JobAdvertManager implements JobAdvertService {
 	}
 
 	@Override
-	public DataResult<JobAdvert> getById() {
-		return  new SuccessDataResult<JobAdvert>(this.jobAdvertDao.getById(0));
+	public DataResult<JobAdvert> getById(int id) {
+		return  new SuccessDataResult<JobAdvert>(this.jobAdvertDao.findById(id));
 	}
 
 	

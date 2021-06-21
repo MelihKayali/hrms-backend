@@ -12,7 +12,7 @@ public interface JobAdvertService {
 	Result delete(JobAdvertDto jobAdvertDto);
 	Result update(JobAdvertDto jobAdvertDto);
 	DataResult<List<JobAdvert>> getAll();
-	DataResult<JobAdvert> getById();
+	DataResult<JobAdvert> getById(int id);
 	DataResult<List<JobAdvert>> getAllOpenJobAdvertList();
 	DataResult<List<JobAdvert>> findAllByOrderByPublishedAtDesc();
 	DataResult<List<JobAdvert>> getAllOpenJobAdvertByEmployer(int id);

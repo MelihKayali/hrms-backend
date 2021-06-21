@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import kodlama.io.HRMS.entities.concretes.JobAdvert;
 
 public interface JobAdvertDao extends JpaRepository<JobAdvert, Integer>{
-	JobAdvert getById(int id);
+	JobAdvert findById(int id);
 	
 	@Query("From JobAdvert where isOpen = true")
 	List<JobAdvert> getAllOpenJobAdvertList();

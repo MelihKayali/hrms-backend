@@ -4,7 +4,6 @@ import kodlama.io.HRMS.entities.concretes.EmployerUser;
 
 public class EmployeeUserCheckHelper {
 	public static Boolean confirmEmployer(EmployerUser confirmedEmployerUser) {
-		return true;
-		
+		return true;	
 	}
 }
