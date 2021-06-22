@@ -32,11 +32,12 @@ public class EmployeeConfirmJobAdvertManager implements EmployeeConfirmJobAdvert
 	private EmployeeUserDao employeeUserDao;
 
 	@Autowired
-	public EmployeeConfirmJobAdvertManager(EmployeeConfirmJobAdvertDao employeeConfirmJobAdvertDao ,JobAdvertDao jobAdvertDao , EmployeeUserDao employeeUserDao) {
+	public EmployeeConfirmJobAdvertManager(EmployeeConfirmJobAdvertDao employeeConfirmJobAdvertDao ,JobAdvertDao jobAdvertDao , EmployeeUserDao employeeUserDao,DtoConverterService dtoConverterService) {
 		super();
 		this.employeeConfirmJobAdvertDao = employeeConfirmJobAdvertDao;
 		this.jobAdvertDao = jobAdvertDao;
 		this.employeeUserDao = employeeUserDao;
+		this.dtoConverterService = dtoConverterService;
 	}
 
 	@Override
@@ -45,12 +46,16 @@ public class EmployeeConfirmJobAdvertManager implements EmployeeConfirmJobAdvert
 	}
 
 	@Override
-	public Result confirmJobAdvert(JobAdvert jobAdvert , EmployeeUser employeeUser , EmployeeConfirmJobAdvert employeeConfirmJobAdvert) {
+	public Result confirmJobAdvert(int jobAdvertId, int  employeeUserId ,  int employeeConfirmJobAdvertId) {
+	
+		JobAdvert jobAdvert = jobAdvertDao.getById(jobAdvertId);
 		jobAdvert.setActive(true);
+		EmployeeUser employeeUser = employeeUserDao.getById(employeeUserId);
+		EmployeeConfirmJobAdvert employeeConfirmJobAdvert = employeeConfirmJobAdvertDao.getById(employeeConfirmJobAdvertId);
 		employeeConfirmJobAdvert.setConfirm(true);
 		employeeConfirmJobAdvert.setEmployeeUser(employeeUser);
 		this.jobAdvertDao.save(jobAdvert);
-		this.employeeUserDao.save(employeeUser);
+		this.employeeConfirmJobAdvertDao.save(employeeConfirmJobAdvert);
 		return new SuccessResult();
 	}
 
@@ -61,6 +66,7 @@ public class EmployeeConfirmJobAdvertManager implements EmployeeConfirmJobAdvert
 	}
 	
 }
+
 
 	
 
