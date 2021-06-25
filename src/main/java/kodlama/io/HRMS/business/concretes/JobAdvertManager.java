@@ -3,6 +3,8 @@ package kodlama.io.HRMS.business.concretes;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import kodlama.io.HRMS.business.abstracts.JobAdvertService;
@@ -92,6 +94,21 @@ public class JobAdvertManager implements JobAdvertService {
 		
 		this.jobAdvertDao.save(jobAdvert);
 		return new SuccessResult("İş İlanı Kapandı");
+	}
+
+	@Override
+	public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(int pageNo, int pageSize, int... cityIds) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsWithCityFiltering(pageable, cityIds).getContent());
+	}
+
+	@Override
+	public DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(int pageNo, int pageSize,
+			int... workingTimes) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsAndWorkingTimeFiltering(pageable, workingTimes).getContent());
 	}
 
 	
