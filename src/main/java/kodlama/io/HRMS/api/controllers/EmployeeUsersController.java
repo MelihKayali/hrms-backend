@@ -18,33 +18,31 @@ import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Education;
 import kodlama.io.HRMS.entities.concretes.EmployeeUser;
 
-
 @RestController
 @RequestMapping("/api/employeeuser")
 public class EmployeeUsersController {
 
 	private EmployeeUserService employeeUserService;
-	
+
 	@Autowired
 	public EmployeeUsersController(EmployeeUserService employeeUserService) {
 		super();
 		this.employeeUserService = employeeUserService;
 	}
-	
+
 	@GetMapping("/getall")
-	public DataResult<List<EmployeeUser>> getAll(){
+	public DataResult<List<EmployeeUser>> getAll() {
 		return this.employeeUserService.getAll();
 	}
-	
+
 	@PutMapping()
-	public DataResult<List<EmployeeUser>> condfirmedEmployer(EmployeeUser employeeUser){
+	public DataResult<List<EmployeeUser>> condfirmedEmployer(EmployeeUser employeeUser) {
 		return this.condfirmedEmployer(employeeUser);
-		
+
 	}
-	
-	
-	   @PostMapping("/add")
-	    public Result add(@Valid @RequestBody EmployeeUser employeeUser) {
-	    	return this.employeeUserService.add(employeeUser);
-	    }
+
+	@PostMapping("/add")
+	public Result add(@Valid @RequestBody EmployeeUser employeeUser) {
+		return this.employeeUserService.add(employeeUser);
+	}
 }

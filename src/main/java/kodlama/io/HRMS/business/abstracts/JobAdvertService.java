@@ -12,6 +12,8 @@ public interface JobAdvertService {
 	Result delete(JobAdvertDto jobAdvertDto);
 	Result update(JobAdvertDto jobAdvertDto);
 	DataResult<List<JobAdvert>> getAll();
+	Result onJobAdvert(int JobAdvertId);
+	Result offJobAdvert(int JobAdvertId);
 	DataResult<JobAdvert> getById(int id);
 	DataResult<List<JobAdvert>> getAllOpenJobAdvertList();
 	DataResult<List<JobAdvert>> findAllByOrderByPublishedAtDesc();

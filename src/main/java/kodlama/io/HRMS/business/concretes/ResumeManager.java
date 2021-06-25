@@ -14,10 +14,15 @@ import kodlama.io.HRMS.core.results.SuccessDataResult;
 import kodlama.io.HRMS.core.results.SuccessResult;
 import kodlama.io.HRMS.core.utilities.CloudinaryService;
 import kodlama.io.HRMS.core.utilities.DtoConverterService;
+import kodlama.io.HRMS.dataAccess.abstracts.EducationDao;
+import kodlama.io.HRMS.dataAccess.abstracts.JobExperienceDao;
+import kodlama.io.HRMS.dataAccess.abstracts.LanguageDao;
 import kodlama.io.HRMS.dataAccess.abstracts.ResumeDao;
+import kodlama.io.HRMS.entities.concretes.Language;
 import kodlama.io.HRMS.entities.concretes.Resume;
 import kodlama.io.HRMS.entities.dtos.ResumeAddDto;
 import kodlama.io.HRMS.entities.dtos.ResumeGetDto;
+import kodlama.io.HRMS.entities.dtos.UpdateResumeDto;
 
 @Service
 public class ResumeManager implements ResumeService {
@@ -25,6 +30,9 @@ public class ResumeManager implements ResumeService {
 	private ResumeDao resumeDao;
 	private DtoConverterService dtoConverterService;
 	private CloudinaryService cloudinaryService;
+	private LanguageDao languageDao;
+	private EducationDao educationDao;
+	private JobExperienceDao jobExperienceDao;
 	
 	@Autowired
 	public ResumeManager(ResumeDao resumeDao,DtoConverterService dtoConverterService,CloudinaryService cloudinaryService) {
@@ -32,6 +40,9 @@ public class ResumeManager implements ResumeService {
 		this.resumeDao = resumeDao;
 		this.dtoConverterService = dtoConverterService;
 		this.cloudinaryService = cloudinaryService;
+		this.languageDao = languageDao;
+		this.educationDao = educationDao;
+		this.jobExperienceDao = jobExperienceDao;
 		
 	}
 
@@ -64,11 +75,26 @@ public class ResumeManager implements ResumeService {
 		Map<String, String> uploader = (Map<String, String>) 
 				cloudinaryService.save(file).getData(); 
 		String imageUrl= uploader.get("url");
-		Resume Cv = resumeDao.getOne(resumeId);
+		Resume Cv = resumeDao.getById(resumeId);
 		Cv.setPhoto(imageUrl);
 		resumeDao.save(Cv);
 		return new SuccessResult("Kayıt Başarılı");
 		
 	}
+
+	@Override
+	public Result updateResume(UpdateResumeDto updateResumeDto) {
+		Resume resume = this.resumeDao.getById(updateResumeDto.getId());
+		resume.setGithubLink(updateResumeDto.getGithubLink());
+		resume.setDescription(updateResumeDto.getDescription());
+		resume.setLinkedLink(updateResumeDto.getLinkedLink());
+		resume.setPhoto(updateResumeDto.getPhoto());
+		
+		
+		this.resumeDao.save(resume);
+		return new SuccessResult("Cv güncellendi");
+	}
+
+
 
 }

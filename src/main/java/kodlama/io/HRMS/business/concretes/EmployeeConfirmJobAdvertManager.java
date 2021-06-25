@@ -56,13 +56,22 @@ public class EmployeeConfirmJobAdvertManager implements EmployeeConfirmJobAdvert
 		employeeConfirmJobAdvert.setEmployeeUser(employeeUser);
 		this.jobAdvertDao.save(jobAdvert);
 		this.employeeConfirmJobAdvertDao.save(employeeConfirmJobAdvert);
-		return new SuccessResult();
+		return new SuccessResult("Kabul edildi");
 	}
 
 	@Override
 	public Result add(EmployeeConfirmJobAdvertDto employeeConfirmJobAdvertDto) {
 		this.employeeConfirmJobAdvertDao.save((EmployeeConfirmJobAdvert) dtoConverterService.dtoClassConverter(employeeConfirmJobAdvertDto, EmployeeConfirmJobAdvert.class));
-		return new SuccessResult("Kayıt Başarılı");
+		return new SuccessResult("Eklendi");
+	}
+
+	@Override
+	public Result refuseJobAdvert(int employeeUserId, int employeeConfirmJobAdvertId) {
+		EmployeeConfirmJobAdvert employeeConfirmJobAdvert = this.employeeConfirmJobAdvertDao.getById(employeeConfirmJobAdvertId);
+		employeeConfirmJobAdvert.setEmployeeUser(this.employeeUserDao.getById(employeeUserId));
+		this.employeeConfirmJobAdvertDao.save(employeeConfirmJobAdvert);
+		
+		return new SuccessResult("Reddedildi");
 	}
 	
 }

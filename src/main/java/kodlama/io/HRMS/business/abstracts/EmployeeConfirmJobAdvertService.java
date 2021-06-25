@@ -12,5 +12,6 @@ import kodlama.io.HRMS.entities.dtos.EmployeeConfirmJobAdvertDto;
 public interface EmployeeConfirmJobAdvertService {
 	Result add(EmployeeConfirmJobAdvertDto employeeConfirmJobAdvertDto);
 	Result confirmJobAdvert(int jobAdvertId , int  employeeUserId ,  int employeeConfirmJobAdvertId);
+	Result refuseJobAdvert(int employeeUserId , int employeeConfirmJobAdvertId);
 	DataResult<EmployeeConfirmJobAdvert> getById(int id);
 }

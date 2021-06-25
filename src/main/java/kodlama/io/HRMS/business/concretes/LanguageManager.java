@@ -14,6 +14,7 @@ import kodlama.io.HRMS.core.utilities.DtoConverterService;
 import kodlama.io.HRMS.dataAccess.abstracts.LanguageDao;
 import kodlama.io.HRMS.entities.concretes.Language;
 import kodlama.io.HRMS.entities.dtos.LanguageDto;
+import kodlama.io.HRMS.entities.dtos.LanguageUpdateDto;
 
 @Service
 public class LanguageManager implements LanguageService {
@@ -38,6 +39,16 @@ public class LanguageManager implements LanguageService {
 	public DataResult<List<LanguageDto>> getAll() {
 		return new SuccessDataResult<List<LanguageDto>>
 		(this.dtoConverterService.dtoConverter(languageDao.findAll(),LanguageDto.class), "Data Listelendi");
+	}
+
+	@Override
+	public Result updateLanguage(LanguageUpdateDto languageUpdateDto) {
+		Language language = this.languageDao.getById(languageUpdateDto.getId());
+		
+		language.setLanguage(languageUpdateDto.getLanguage());
+		language.setLangLevel(languageUpdateDto.getLangLavel());
+		
+		return new SuccessResult("Güncellendi");
 	}
 
 }

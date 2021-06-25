@@ -8,4 +8,6 @@ import kodlama.io.HRMS.entities.concretes.Resume;
 
 public interface ResumeDao extends JpaRepository<Resume, Integer> {
 	List<Resume> findAllByCandidateId(int id);
+
+//	Resume getByName(String linkedLink);
 }

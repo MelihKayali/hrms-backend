@@ -1,5 +1,7 @@
 package kodlama.io.HRMS.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,15 +40,21 @@ public class EmployeeConfirmJobAdvertsController {
 	}
 	
 	
-	@GetMapping("/employeeconfirmjobadvert")
+	@GetMapping("/getById")
 	public DataResult<EmployeeConfirmJobAdvert> getById(int id){
 		return this.employeeConfirmJobAdvertsService.getById(id);
 	}
 	
 	
 	@PostMapping("/add")
-	public Result add( EmployeeConfirmJobAdvertDto employeeConfirmJobAdvertDto) {
+	public Result add( @Valid @RequestBody EmployeeConfirmJobAdvertDto employeeConfirmJobAdvertDto) {
 		return this.employeeConfirmJobAdvertsService.add(employeeConfirmJobAdvertDto);
 	}
+	
+	@PutMapping("refuseJobAdvert")
+	public Result refuseJobRAdvert(int employeeConfirmJobAdvertId , int employeeUserId ) {
+		return this.employeeConfirmJobAdvertsService.refuseJobAdvert(employeeUserId, employeeConfirmJobAdvertId);
+	}
+	
 	
 }

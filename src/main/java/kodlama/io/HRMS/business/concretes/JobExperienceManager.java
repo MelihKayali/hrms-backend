@@ -14,6 +14,7 @@ import kodlama.io.HRMS.core.utilities.DtoConverterService;
 import kodlama.io.HRMS.dataAccess.abstracts.JobExperienceDao;
 import kodlama.io.HRMS.entities.concretes.JobExperience;
 import kodlama.io.HRMS.entities.dtos.JobExperienceDto;
+import kodlama.io.HRMS.entities.dtos.JobExperienceUpdateDto;
 
 @Service
 public class JobExperienceManager implements JobExperienceService{
@@ -43,6 +44,21 @@ public class JobExperienceManager implements JobExperienceService{
 	public DataResult<List<JobExperienceDto>> findAllByResumeIdOrderByEndedDateDesc(int id) {
 		return new SuccessDataResult<List<JobExperienceDto>>
 		(this.dtoConverterService.dtoConverter(this.jobExperienceDao.findAllByResumeIdOrderByEndedDateDesc(id),JobExperienceDto.class),"Data Listelendi");
+	}
+
+	@Override
+	public Result updateJobExperience(JobExperienceUpdateDto jobExperienceUpdateDto) {
+		JobExperience jobExperience = this.jobExperienceDao.getById(jobExperienceUpdateDto.getId());
+		JobExperienceDto jobExperienceDto = (JobExperienceDto) this.dtoConverterService.dtoClassConverter(jobExperience, JobExperienceDto.class);
+		
+		jobExperienceDto.setCompanyName(jobExperienceUpdateDto.getCompanyName());
+		jobExperienceDto.setJobPositionId(jobExperienceUpdateDto.getJobPositionId());
+		jobExperienceDto.setStartedDate(jobExperienceUpdateDto.getStartedDate());
+		jobExperienceDto.setEndedDate(jobExperienceUpdateDto.getEndedDate());
+		
+		JobExperience updatedJobExperience = (JobExperience) this.dtoConverterService.dtoClassConverter(jobExperienceDto, JobExperience.class);
+		this.jobExperienceDao.save(updatedJobExperience);
+		return new SuccessResult("Güncellendi");
 	}
 
 }

@@ -76,6 +76,24 @@ public class JobAdvertManager implements JobAdvertService {
 		return  new SuccessDataResult<JobAdvert>(this.jobAdvertDao.findById(id));
 	}
 
+	@Override
+	public Result onJobAdvert(int JobAdvertId) {
+		JobAdvert jobAdvert = this.jobAdvertDao.getById(JobAdvertId);
+		jobAdvert.setActive(true);
+		
+		this.jobAdvertDao.save(jobAdvert);
+		return new SuccessResult("İş İlanı Açıldı");
+	}
+
+	@Override
+	public Result offJobAdvert(int JobAdvertId) {
+		JobAdvert jobAdvert = this.jobAdvertDao.getById(JobAdvertId);
+		jobAdvert.setActive(false);
+		
+		this.jobAdvertDao.save(jobAdvert);
+		return new SuccessResult("İş İlanı Kapandı");
+	}
+
 	
 	
 

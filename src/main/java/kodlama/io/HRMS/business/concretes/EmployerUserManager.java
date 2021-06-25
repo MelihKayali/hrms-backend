@@ -17,6 +17,7 @@ import kodlama.io.HRMS.core.results.SuccessDataResult;
 import kodlama.io.HRMS.core.results.SuccessResult;
 import kodlama.io.HRMS.dataAccess.abstracts.EmployerUserDao;
 import kodlama.io.HRMS.entities.concretes.EmployerUser;
+import kodlama.io.HRMS.entities.dtos.EmployerUserUpdateDto;
 
 @Service
 public class EmployerUserManager implements EmployerUserService {
@@ -69,6 +70,19 @@ public class EmployerUserManager implements EmployerUserService {
 		
 		this.employerUserDao.save(employerUser);
 		return new SuccessResult(this.emailService.sendEmail(employerUser).getMessage());
+	}
+
+	@Override
+	public Result updateEmployerUser(EmployerUserUpdateDto employerUserUpdateDto) {
+		EmployerUser employerUser = this.employerUserDao.getById(employerUserUpdateDto.getId());
+	
+		employerUser.setCompanyName(employerUserUpdateDto.getCompanyName());
+		employerUser.setEmail(employerUserUpdateDto.getEmail());
+		employerUser.setPassword(employerUserUpdateDto.getPassword());
+		employerUser.setTelephoneNumber(employerUserUpdateDto.getTelephoneNumber());
+		employerUser.setWebAddress(employerUserUpdateDto.getWebAdress());
+		
+		return new SuccessResult("Güncellendi");
 	}
 
 }

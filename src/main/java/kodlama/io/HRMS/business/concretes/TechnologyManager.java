@@ -14,6 +14,7 @@ import kodlama.io.HRMS.core.utilities.DtoConverterService;
 import kodlama.io.HRMS.dataAccess.abstracts.TechnologyDao;
 import kodlama.io.HRMS.entities.concretes.Technology;
 import kodlama.io.HRMS.entities.dtos.TechnologyDto;
+import kodlama.io.HRMS.entities.dtos.TechnologyUpdateDto;
 
 @Service
 public class TechnologyManager implements TechnologyService {
@@ -37,6 +38,15 @@ public class TechnologyManager implements TechnologyService {
 	@Override
 	public DataResult<List<Technology>> getAll() {
 		return new SuccessDataResult<List<Technology>>(this.technologyDao.findAll());
+	}
+
+	@Override
+	public Result updateTechnology(TechnologyUpdateDto technologyUpdateDto) {
+		Technology technology = this.technologyDao.getById(technologyUpdateDto.getId());
+		
+		technology.setDescription(technologyUpdateDto.getDescription());
+		
+		return new SuccessResult("Güncellendi");
 	}
 
 }

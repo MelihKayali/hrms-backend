@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import kodlama.io.HRMS.core.results.DataResult;
 import kodlama.io.HRMS.core.results.Result;
 import kodlama.io.HRMS.entities.concretes.Technology;
 import kodlama.io.HRMS.entities.dtos.TechnologyDto;
+import kodlama.io.HRMS.entities.dtos.TechnologyUpdateDto;
 
 @RestController
 @RequestMapping("/api/technology")
@@ -36,5 +38,12 @@ public class TechnologiesController {
 	    @PostMapping("/add")
 	    public Result add(@Valid @RequestBody TechnologyDto technologyDto) {
 	    	return this.technologyService.add(technologyDto);
+	    }
+	    
+	    
+	    @PutMapping("/updateTechnology")
+	    public Result updateTechnology(@Valid @RequestBody TechnologyUpdateDto technologyUpdateDto) {
+	    	return this.technologyService.updateTechnology(technologyUpdateDto);
+	    	
 	    }
 }

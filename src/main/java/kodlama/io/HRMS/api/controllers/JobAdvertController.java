@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +61,16 @@ public class JobAdvertController {
 	@GetMapping("/getallopenjobadvert")
 	public DataResult<List<JobAdvert>> getAllOpenJobAdvertByEmployer(int id){
 		return this.jobAdvertService.getAllOpenJobAdvertByEmployer(id);
+	}
+	
+	@PutMapping("onJobAdvert")
+	public Result onJobAdvert(@Valid @RequestParam int jobAdvertId) {
+		return this.jobAdvertService.onJobAdvert(jobAdvertId);
+	}
+	
+	@PutMapping("offJobAdvert")
+	public Result offJobAdvert(@Valid @RequestParam int jobAdvertId) {	
+		return this.jobAdvertService.offJobAdvert(jobAdvertId);
 	}
 	
 }

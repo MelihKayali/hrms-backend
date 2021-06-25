@@ -15,6 +15,7 @@ import kodlama.io.HRMS.dataAccess.abstracts.EmployeeUserDao;
 import kodlama.io.HRMS.entities.concretes.Education;
 import kodlama.io.HRMS.entities.concretes.EmployeeUser;
 import kodlama.io.HRMS.entities.concretes.EmployerUser;
+import kodlama.io.HRMS.entities.concretes.JobAdvert;
 
 @Service
 public class EmployeeUserManager implements EmployeeUserService{
@@ -42,7 +43,9 @@ public class EmployeeUserManager implements EmployeeUserService{
 		this.employeeUserDao.save(employeeUser);
 		return new SuccessResult("Kayıt Başarılı");
 	}
-	
 
-
+	@Override
+	public DataResult<Boolean> confirmedJobAdvert(EmployeeUser employeeUser, JobAdvert jobAdvert) {
+		return new SuccessDataResult<Boolean>(EmployeeUserCheckHelper.confirmJobAdvert(jobAdvert));	
+	}	
 }
