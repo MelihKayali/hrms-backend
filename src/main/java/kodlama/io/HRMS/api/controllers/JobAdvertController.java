@@ -85,4 +85,11 @@ public class JobAdvertController {
 		return this.jobAdvertService.getByActiveIsAndWorkingTimeFiltering(pageNo, pageSize, workingTimes);
 	}
 
+	@GetMapping("/getbyactiveiswithpagination")
+	public DataResult<List<JobAdvert>> getByActiveIsWithPagination(
+			@Valid @RequestParam(required = false, defaultValue = "1") int pageNo,
+			@Valid @RequestParam(required = false, defaultValue = "10") int pageSize) {
+		return this.jobAdvertService.getByActiveIsWithPagination(pageNo, pageSize);
+	}
+
 }

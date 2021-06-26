@@ -31,4 +31,6 @@ public interface JobAdvertService {
 	DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(int pageNo, int pageSize, int... cityIds);
 
 	DataResult<List<JobAdvert>> getByActiveIsAndWorkingTimeFiltering(int pageNo, int pageSize, int... workingTimes);
+	
+    DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize);
 }

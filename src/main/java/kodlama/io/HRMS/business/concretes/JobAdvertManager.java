@@ -21,13 +21,14 @@ import kodlama.io.HRMS.entities.dtos.JobAdvertDto;
 
 @Service
 public class JobAdvertManager implements JobAdvertService {
-	
+
 	private JobAdvertDao jobAdvertDao;
 	private CheckNullFieldService checkNullFieldService;
 	private DtoConverterService dtoConverterService;
-	
+
 	@Autowired
-	public JobAdvertManager(JobAdvertDao jobAdvertDao, CheckNullFieldService checkNullFieldService , DtoConverterService dtoConverterService) {
+	public JobAdvertManager(JobAdvertDao jobAdvertDao, CheckNullFieldService checkNullFieldService,
+			DtoConverterService dtoConverterService) {
 		super();
 		this.jobAdvertDao = jobAdvertDao;
 		this.checkNullFieldService = checkNullFieldService;
@@ -64,7 +65,7 @@ public class JobAdvertManager implements JobAdvertService {
 
 	@Override
 	public DataResult<List<JobAdvert>> getAllOpenJobAdvertByEmployer(int id) {
-		
+
 		return new SuccessDataResult<List<JobAdvert>>(this.jobAdvertDao.findAll());
 	}
 
@@ -75,14 +76,14 @@ public class JobAdvertManager implements JobAdvertService {
 
 	@Override
 	public DataResult<JobAdvert> getById(int id) {
-		return  new SuccessDataResult<JobAdvert>(this.jobAdvertDao.findById(id));
+		return new SuccessDataResult<JobAdvert>(this.jobAdvertDao.findById(id));
 	}
 
 	@Override
 	public Result onJobAdvert(int JobAdvertId) {
 		JobAdvert jobAdvert = this.jobAdvertDao.getById(JobAdvertId);
 		jobAdvert.setActive(true);
-		
+
 		this.jobAdvertDao.save(jobAdvert);
 		return new SuccessResult("İş İlanı Açıldı");
 	}
@@ -91,7 +92,7 @@ public class JobAdvertManager implements JobAdvertService {
 	public Result offJobAdvert(int JobAdvertId) {
 		JobAdvert jobAdvert = this.jobAdvertDao.getById(JobAdvertId);
 		jobAdvert.setActive(false);
-		
+
 		this.jobAdvertDao.save(jobAdvert);
 		return new SuccessResult("İş İlanı Kapandı");
 	}
@@ -100,7 +101,8 @@ public class JobAdvertManager implements JobAdvertService {
 	public DataResult<List<JobAdvert>> getByActiveIsWithCityFiltering(int pageNo, int pageSize, int... cityIds) {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 
-        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsWithCityFiltering(pageable, cityIds).getContent());
+		return new SuccessDataResult<>(
+				this.jobAdvertDao.getByActiveIsWithCityFiltering(pageable, cityIds).getContent());
 	}
 
 	@Override
@@ -108,10 +110,15 @@ public class JobAdvertManager implements JobAdvertService {
 			int... workingTimes) {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
 
-        return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIsAndWorkingTimeFiltering(pageable, workingTimes).getContent());
+		return new SuccessDataResult<>(
+				this.jobAdvertDao.getByActiveIsAndWorkingTimeFiltering(pageable, workingTimes).getContent());
 	}
 
-	
-	
+	@Override
+	public DataResult<List<JobAdvert>> getByActiveIsWithPagination(int pageNo, int pageSize) {
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+
+		return new SuccessDataResult<>(this.jobAdvertDao.getByActiveIs(pageable).getContent());
+	}
 
 }
