@@ -10,6 +10,7 @@ import kodlama.io.HRMS.entities.concretes.Language;
 import kodlama.io.HRMS.entities.concretes.Resume;
 import kodlama.io.HRMS.entities.dtos.ResumeAddDto;
 import kodlama.io.HRMS.entities.dtos.ResumeGetDto;
+import kodlama.io.HRMS.entities.dtos.ResumeUpdateDto;
 import kodlama.io.HRMS.entities.dtos.UpdateResumeDto;
 
 public interface ResumeService {
@@ -17,7 +18,8 @@ public interface ResumeService {
 	DataResult<List<Resume>> getAll();
 	DataResult<List<ResumeGetDto>> findAllByCandidateId(int id);
 	Result addPicture(MultipartFile file, int resumeId);
-	
+	 Result update(ResumeUpdateDto resumeUpdateDto);
+	 Result updateUpdatedDate(int resumeId);
 	Result updateResume(UpdateResumeDto updateResumeDto);
 	
 	

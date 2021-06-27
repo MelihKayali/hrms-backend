@@ -42,8 +42,8 @@ public class EmployerUserController {
 	}
 	
 	@PutMapping("/updateEmployer")
-	public Result updateEmployer(@Valid @RequestBody EmployerUserUpdateDto employerUserUpdateDto) {
-		return this.employerUserService.updateEmployerUser(employerUserUpdateDto);
+	public Result updateEmployer(@Valid @RequestBody EmployerUser employerUser) {
+		return this.employerUserService.update(employerUser);
 	}
 
 }

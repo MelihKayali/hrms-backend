@@ -12,4 +12,6 @@ public interface EmployerUserUpdateCompanyInfoService {
 	Result add(EmployerUserUpdateCompanyInfoDto employerUserUpdateCompanyInfoDto);
 	Result confirmChange(int EmployerUserUpdateCompanyInfoId , int employerUserId);
 	Result refuseChange(int EmployerUserUpdateCompanyInfoId , int employerUserId);
+	DataResult<EmployerUserUpdateCompanyInfo> getById(int EmployerUserUpdateCompanyInfoId);
+	
 }

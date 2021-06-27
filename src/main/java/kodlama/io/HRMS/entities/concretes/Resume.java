@@ -1,5 +1,6 @@
 package kodlama.io.HRMS.entities.concretes;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -48,10 +49,10 @@ public class Resume {
 	private String description;
 	
 	@Column(name="created_date")
-	private Date createdDate;
+	private LocalDate createdDate;
 	
 	@Column(name="updated_date")
-	private Date updatedDate;
+	private LocalDate updatedDate;
 	
 	@Column(name="is_active")
 	private boolean isActive=true;

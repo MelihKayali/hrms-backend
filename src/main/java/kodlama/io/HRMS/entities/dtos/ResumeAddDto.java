@@ -1,5 +1,6 @@
 package kodlama.io.HRMS.entities.dtos;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +21,6 @@ public class ResumeAddDto {
 	private String linkedLink;
 	private String photo;
 	private String description;
-	private Date createdDate;
-	private Date updatedDate;
+	private LocalDate createdDate;
+	private LocalDate updatedDate;
 }

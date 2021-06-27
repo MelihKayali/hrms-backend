@@ -51,25 +51,27 @@ public class EmployerUserUpdateCompanyInfoManager implements EmployerUserUpdateC
 	@Override
 	public Result confirmChange(int EmployerUserUpdateCompanyInfoId, int employerUserId) {
 		EmployerUserUpdateCompanyInfo employerUserUpdateCompanyInfo = employerUserUpdateCompanyInfoDao.getById(EmployerUserUpdateCompanyInfoId);
-		employerUserUpdateCompanyInfo.setConfirmed(true);
+		employerUserUpdateCompanyInfo.setEmployerUser(this.employerUserDao.getById(employerUserId));
 		employerUserUpdateCompanyInfo.setConfirmDate(LocalDate.now());
-		EmployerUser employerUser = employerUserDao.getById(employerUserId);
-		employerUserUpdateCompanyInfo.setEmployerUser(employerUser);
+		employerUserUpdateCompanyInfo.setConfirmed(true);
+		
 		this.employerUserUpdateCompanyInfoDao.save(employerUserUpdateCompanyInfo);
-		this.employerUserDao.save(employerUser);
 		return new SuccessResult("Bilgiler Değiştirildi");
 	}
 
 	@Override
 	public Result refuseChange(int EmployerUserUpdateCompanyInfoId, int employerUserId) {
 		EmployerUserUpdateCompanyInfo employerUserUpdateCompanyInfo = employerUserUpdateCompanyInfoDao.getById(EmployerUserUpdateCompanyInfoId);
-		employerUserUpdateCompanyInfo.setConfirmed(false);
-		employerUserUpdateCompanyInfo.setConfirmDate(LocalDate.now());
-		EmployerUser employerUser = employerUserDao.getById(employerUserId);
-		employerUserUpdateCompanyInfo.setEmployerUser(employerUser);
+		employerUserUpdateCompanyInfo.setEmployerUser(this.employerUserDao.getById(employerUserId));
+		
 		this.employerUserUpdateCompanyInfoDao.save(employerUserUpdateCompanyInfo);
-		this.employerUserDao.save(employerUser);
 		return new SuccessResult("Bilgiler Değiştirilmedi");
+	}
+
+	@Override
+	public DataResult<EmployerUserUpdateCompanyInfo> getById(int EmployerUserUpdateCompanyInfoId) {
+		
+		return new SuccessDataResult<EmployerUserUpdateCompanyInfo>(this.employerUserUpdateCompanyInfoDao.getById(EmployerUserUpdateCompanyInfoId));
 	}
 
 }

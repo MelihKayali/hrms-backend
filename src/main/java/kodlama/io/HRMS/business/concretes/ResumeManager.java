@@ -1,5 +1,6 @@
 package kodlama.io.HRMS.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import kodlama.io.HRMS.entities.concretes.Language;
 import kodlama.io.HRMS.entities.concretes.Resume;
 import kodlama.io.HRMS.entities.dtos.ResumeAddDto;
 import kodlama.io.HRMS.entities.dtos.ResumeGetDto;
+import kodlama.io.HRMS.entities.dtos.ResumeUpdateDto;
 import kodlama.io.HRMS.entities.dtos.UpdateResumeDto;
 
 @Service
@@ -93,6 +95,28 @@ public class ResumeManager implements ResumeService {
 		
 		this.resumeDao.save(resume);
 		return new SuccessResult("Cv güncellendi");
+	}
+
+	@Override
+	public Result update(ResumeUpdateDto resumeUpdateDto) {
+		 Resume tempResume = this.resumeDao.getById(resumeUpdateDto.getId());
+	        tempResume.setGithubLink(resumeUpdateDto.getGithubLink());
+	        tempResume.setLinkedLink(resumeUpdateDto.getLinkedinLink());
+	        tempResume.setPhoto(resumeUpdateDto.getPhoto());
+	        tempResume.setDescription(resumeUpdateDto.getDescription());
+
+	        this.resumeDao.save(tempResume);
+
+	        return new SuccessResult("Updated");
+	}
+
+	@Override
+	public Result updateUpdatedDate(int resumeId) {
+		Resume tempResume = this.resumeDao.getById(resumeId);
+        tempResume.setUpdatedDate(LocalDate.now());
+        this.resumeDao.save(tempResume);
+
+        return new SuccessResult("Updated");
 	}
 
 

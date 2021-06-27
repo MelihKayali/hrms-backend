@@ -11,7 +11,7 @@ public interface EmployerUserService {
 	DataResult<List<EmployerUser>> getAll();
 	DataResult<List<EmployerUser>> findbyEmail(String email);
 	Result add(EmployerUser employerUser);
-	Result updateEmployerUser(EmployerUserUpdateDto employerUserUpdateDto);
+	Result update(EmployerUser employerUser);
 
 }
 

@@ -72,17 +72,20 @@ public class EmployerUserManager implements EmployerUserService {
 		return new SuccessResult(this.emailService.sendEmail(employerUser).getMessage());
 	}
 
+
 	@Override
-	public Result updateEmployerUser(EmployerUserUpdateDto employerUserUpdateDto) {
-		EmployerUser employerUser = this.employerUserDao.getById(employerUserUpdateDto.getId());
-	
-		employerUser.setCompanyName(employerUserUpdateDto.getCompanyName());
-		employerUser.setEmail(employerUserUpdateDto.getEmail());
-		employerUser.setPassword(employerUserUpdateDto.getPassword());
-		employerUser.setTelephoneNumber(employerUserUpdateDto.getTelephoneNumber());
-		employerUser.setWebAddress(employerUserUpdateDto.getWebAdress());
-		
-		return new SuccessResult("Güncellendi");
+	public Result update(EmployerUser employerUser) {
+		 EmployerUser tempEmployerUser = this.employerUserDao.getOne(employerUser.getId());
+
+	        tempEmployerUser.setEmail(employerUser.getEmail());
+	        tempEmployerUser.setCompanyName(employerUser.getCompanyName());
+	        tempEmployerUser.setWebAddress(employerUser.getWebAddress());
+	        tempEmployerUser.setTelephoneNumber(employerUser.getTelephoneNumber());
+	        tempEmployerUser.setPassword(employerUser.getPassword());
+
+	        this.employerUserDao.save(tempEmployerUser);
+
+	        return new SuccessResult("Updated");
 	}
 
 }
