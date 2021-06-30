@@ -9,8 +9,9 @@ import kodlama.io.HRMS.entities.dtos.FavoriteJobAdvertDto;
 
 
 public interface FavoriteJobAdvertService {
-	Result add(FavoriteJobAdvertDto favoriteJobAdvertDto);
 	DataResult<List<FavoriteJobAdvert>> getAll();
 	Result favoriteJobAdvert(int jobAdvertId , int candidateUserId , int favoriteJobAdvertId);
-	
+	DataResult<FavoriteJobAdvert> add(FavoriteJobAdvert favoriteJobAdvert);
+    Result delete(int favoriteJobAdvertId);
+    DataResult<List<FavoriteJobAdvert>> getAllByCandidateUser(int candidateUserId);
 }

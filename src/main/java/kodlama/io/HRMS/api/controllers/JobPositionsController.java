@@ -14,6 +14,7 @@ import kodlama.io.HRMS.entities.concretes.JobPosition;
 
 @RestController
 @RequestMapping("/api/jobpositions")
+@CrossOrigin
 public class JobPositionsController {
 
     private  JobPositionService jobPositionService;
@@ -32,4 +33,10 @@ public class JobPositionsController {
     public Result add(@Valid @RequestBody JobPosition jobPosition) {
     	return this.jobPositionService.add(jobPosition);
     }
+    
+    @PostMapping("/getbyposition")
+	public DataResult<List<JobPosition>> getByPosition(@RequestParam String position){
+		return this.jobPositionService.getByPosition(position.trim());
+	}
+
 }

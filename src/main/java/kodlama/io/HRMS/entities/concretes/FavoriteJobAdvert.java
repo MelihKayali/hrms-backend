@@ -1,5 +1,7 @@
 package kodlama.io.HRMS.entities.concretes;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,4 +36,8 @@ public class FavoriteJobAdvert {
 	
 	@Column(name="favorite_job_advert")
 	private boolean favoriteJobAdvert = false;
+	
+    @Column(name = "created_date")
+    private LocalDate createdDate;
+    
 }

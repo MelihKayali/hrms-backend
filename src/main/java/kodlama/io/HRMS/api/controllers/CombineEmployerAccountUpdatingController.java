@@ -31,13 +31,13 @@ public class CombineEmployerAccountUpdatingController {
         return this.combineEmployerAccountUpdatingService.makeRequestForAccountDetailsChange(employerUserUpdateCompanyInfoDto);
     }
 
-    @PutMapping("/confirmemployeraccountchange")
-    public Result confirmEmployerAccountChange(@Valid @RequestParam int employerUserUpdateCompanyInfoId, @Valid @RequestParam int employeeUserId, @Valid @RequestParam int employerUserId) {
-        return this.combineEmployerAccountUpdatingService.confirmEmployerAccountChange(employerUserUpdateCompanyInfoId, employeeUserId, employerUserId);
-    }
+	 @PutMapping("/confirmemployeraccountchange")
+	    public Result confirmEmployerAccountChange(@Valid @RequestParam int employerUserUpdateCompanyInfoId, @Valid @RequestParam int employerUserId, @Valid @RequestParam int employeeUserId) {
+	        return this.combineEmployerAccountUpdatingService.confirmEmployerAccountChange(employerUserUpdateCompanyInfoId, employerUserId, employeeUserId);
+	    }
 
     @PutMapping("/rejectemployeraccountchange")
-    public Result rejectEmployerAccountChange(@Valid @RequestParam int employerUserUpdateCompanyInfoId, @Valid @RequestParam int employeeUserId) {
-        return this.combineEmployerAccountUpdatingService.rejectEmployerAccountChange(employerUserUpdateCompanyInfoId, employeeUserId);
+    public Result rejectEmployerAccountChange(@Valid @RequestParam int employerUserUpdateCompanyInfoId, @Valid @RequestParam int employerUserId) {
+        return this.combineEmployerAccountUpdatingService.rejectEmployerAccountChange(employerUserUpdateCompanyInfoId, employerUserId);
     }
 }

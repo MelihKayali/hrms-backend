@@ -46,4 +46,9 @@ public class JobPositionManager implements JobPositionService {
 	}
 	//this.existByPosition(jobPosition.getPosition()) != null
 
+	@Override
+	public DataResult<List<JobPosition>> getByPosition(String position) {
+		return new SuccessDataResult<>(this.jobPositionDao.findByPosition(position));
+	}
+
 }
